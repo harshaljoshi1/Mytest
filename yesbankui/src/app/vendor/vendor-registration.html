@@ -1,0 +1,251 @@
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+
+		<ol class="breadcrumb">
+			<!--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>-->
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="register-box">
+			<div class="register-logo">
+				<a href="javascrpt:;"><b>Register a new Vendor</b></a>
+			</div>
+
+			<div class="register-box-body">
+				<!-- <p class="login-box-msg">Register a new Vendor membership</p>-->
+
+				<form name="myForm" novalidate>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.VendorFirstName" placeholder="First name"
+									name="fName" required>
+								<div ng-if="submitted || myForm.fName.$dirty"
+									ng-messages="myForm.fName.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">First Name is required</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.VendorLastName" placeholder="Last Name"
+									name="lastName" required>
+								<div ng-if="submitted || myForm.lastName.$dirty"
+									ng-messages="myForm.lastName.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Last Name is required</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.VendorBankName" placeholder="Bank Name"
+									name="bankName" required>
+								<div ng-if="submitted || myForm.bankName.$dirty"
+									ng-messages="myForm.bankName.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Bank Name is required</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.SupplierAccount" placeholder="Account Number"
+									name="acntNo" required>
+								<div ng-if="submitted || myForm.acntNo.$dirty"
+									ng-messages="myForm.acntNo.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Account Number is required</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.IFSCCode" placeholder="IFS Code" name="ifsc"
+									required>
+								<div ng-if="submitted || myForm.ifsc.$dirty"
+									ng-messages="myForm.ifsc.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Ifsc Code is required</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="number" class="form-control"
+									ng-model="vendor.SupplierLimit" placeholder="Limit" disabled>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input placeholder="Expiry Date mm/dd/yyyy" class="form-control textbox-n"
+									ng-model="vendor.LimitExpiryDate" type="text"
+									onfocus="(this.type='date')" name="expiry" required>
+								<div ng-if="submitted || myForm.expiry.$dirty"
+									ng-messages="myForm.expiry.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Expiry date is required</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="number" class="form-control"
+									ng-model="vendor.VendorPhone" placeholder="Phone Number"
+									maxlength="10" minlength="10" name="phone" required> <span
+									class="help-block"
+									ng-show="((myForm.phone.$error.minlength || 
+                      myForm.phone.$error.maxlength) && 
+                      myForm.phone.$dirty) "
+									style="color: red" a> Mobile Number should be 10 digits
+								</span>
+								<div ng-if="submitted || myForm.phone.$dirty"
+									ng-messages="myForm.phone.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Phone Number is required</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.VendorPAN" placeholder="PAN" name="pan"
+									required>
+								<div ng-if="submitted || myForm.pan.$dirty"
+									ng-messages="myForm.pan.$error" style="color: red" role="alert">
+									<div ng-message="required">Pan Number is required</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.VendorAddress"
+									placeholder="Vendor Office Address" name="address" required>
+								<div ng-if="submitted || myForm.address.$dirty"
+									ng-messages="myForm.address.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Vendor Address is required</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.SupplierCode" placeholder="Supplier Code"
+									name="supplierCode" required>
+								<div ng-if="submitted || myForm.supplierCode.$dirty"
+									ng-messages="myForm.supplierCode.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Supplier Code is required</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.Landmark" placeholder="Landmark"
+									name="landmark" required>
+								<div ng-if="submitted || myForm.landmark.$dirty"
+									ng-messages="myForm.landmark.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">LandMark is required</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="vendor.VendorBankAddress"
+									placeholder="Vendor Bank Address" name="bankAddress" required>
+								<div ng-if="submitted || myForm.bankAddress.$dirty"
+									ng-messages="myForm.bankAddress.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Bank Address is required</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="email" class="form-control"
+									ng-model="vendor.VendorEmail" placeholder="Email" name="email"
+									ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$/"
+									required> <span
+									class="glyphicon glyphicon-envelope form-control-feedback"></span>
+								<div role="alert" style="color: red">
+									<span class="error" ng-show="myForm.email.$error.pattern">
+										Not a valid email!</span>
+								</div>
+								<div ng-if="submitted || myForm.email.$dirty"
+									ng-messages="myForm.email.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Email is required</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<select class="form-control" ng-model="vendor.AnchorRefNumber"
+									ng-options="anchor.AnchorRefNumber as anchor.CustomerName for anchor in anchorList">
+									<option value="" disabled selected style="display: none;">Select
+										Anchor</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<!--<div class="form-group has-feedback">
+                <input type="password" class="form-control" ng-model="vendor.rePassword" placeholder="Retype password" name="rePassword"
+                       required>
+                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                <div ng-if="submitted || myForm.rePassword.$dirty" ng-messages="myForm.rePassword.$error" style="color:red" role="alert">
+                  <div ng-message="required">Password must be re entered</div>
+                </div>
+              </div>-->
+						</div>
+					</div>
+
+					<div class="text-right margin-top-btm-20">
+						<div class="col-md-12">
+							<div class="col-md-4"></div>
+							<div class="col-md-4">
+								<button class="btn btn-primary btn-block btn-flat btn-height-40"
+									ng-click="registerVendor(vendor)">Register</button>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
+					</div>
+				</form>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</section>
+</div>

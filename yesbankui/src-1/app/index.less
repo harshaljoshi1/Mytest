@@ -1,0 +1,832 @@
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  less dependencies when defined in the bower.json of your dependencies
+ */
+// bower:less
+// endbower
+
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap/less/variables.less
+ */
+@navbar-inverse-link-color: #5AADBB;
+@icon-font-path: '../../bootstrap/fonts/';
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+.container {
+  padding: 0;
+  width: 100%;
+}
+.labelColor label{color:brown}
+.labelColor span{color:blue}
+
+.content-wrapper {
+  .content-wrapper {
+    margin: auto;
+  }
+}
+
+.dw-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  display: none;
+}
+
+.dw-loading:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.dw-loading.dw-loading-active {
+  display: block;
+}
+
+.dw-loading.dw-loading-overlay {
+  background-color: rgba(255, 255, 255, .7);
+  z-index: 9999;
+}
+
+.dw-loading > .dw-loading-body {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+
+.dw-loading > .dw-loading-body > .dw-loading-spinner {
+  position: relative;
+}
+
+.dw-loading > .dw-loading-body > .dw-loading-text {
+  position: relative;
+  top: 25px;
+  font-weight: bold;
+  font-size: 11px;
+  text-shadow: 0 0 2px rgb(255, 255, 255);
+}
+
+.spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.47);
+  z-index: 9999;
+  .spinner_img {
+    color: white;
+    width: 550px;
+    height: 550px;
+    position: fixed;
+    left: 42%;
+    top: 45%;
+
+  }
+}
+.display_none{display: none !important;}
+.spinner1 {
+
+  top: 360px;
+  left: 70px;
+  width: 100%;
+  height: 27vh;
+  text-align: center;
+  z-index: 9999;
+  position: absolute;
+}
+.spinner1 .spinner1_img {
+  color: white;
+  width: 550px;
+  height: 550px;
+
+  text-align: center;
+  left: 42%;
+  top: 45%;
+}
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your less files automatically
+ */
+// injector
+// endinjector
+
+/*hyper-edge-styles*/
+.hyperedge-container {
+  font-size:12px;
+
+}
+
+.hyper-Header{
+	background-color: #212832;
+	background-image: url('image.png');
+	background-size: 50% 350%;
+	background-position: -30px -200px;
+	text-align: center;
+	padding-bottom: 30px;
+	font-size: 250%;
+	font-style: normal;
+	padding-top:30px;
+	padding-right:35%;
+	margin-top:-10px;
+	color: #FFFFFF;
+}
+
+.hyper-Navigation {
+	box-shadow: 3px 3px 3px #02090f;
+	width:90%;
+	margin-left:5%;
+	margin-right:5%;
+	border-radius: 5px;
+	background-color: #103e69;
+	list-style-type: none;
+	padding:0;
+	float: left;
+	font-size:120%;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top:-25px;
+	line-height: 40px;
+	display: block;
+	margin-bottom: 30px;
+}
+.hyper-Navigation li{
+	display: inline;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.hyper-Navigation a{
+	text-decoration: none;
+	color:#FFFFFF;
+	padding: 10px 10px 10px 10px;
+}
+.hyper-Navigation a:hover {
+	background-color: #1F242B;
+	border-style:initial;
+	border-radius: 5px;
+}
+.hyper-Navigation li:before {
+content: "|  ";
+}
+.hyper-Navigation li:first-child:before {
+content: none;
+}
+.hyper-menu-trigger{
+	display: none;
+	background-color: #1f242b;
+	margin-left:5%;
+	margin-right:5%;
+	border-radius: 5px;
+	max-width: 90%;
+	margin-bottom: -3px;
+	padding: 3px;
+	text-align: left;
+	padding-left:15px;
+	padding-top: 5px;
+}
+.hyper-menu-button{
+	margin-top:10px;
+	margin-bottom:10px;
+	width: 120px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+@media screen and (max-width: 600px){
+	.hyper-Navigation{
+		float:none;
+		line-height: 20px;
+		display: none;
+		border-top-left-radius: 0px;
+		border-top-right-radius:0px;
+		background-color: #1f242b;
+		margin-top:0px !important;
+		padding-top:10px !important;
+	}
+	.hyper-Navigation li{
+		display: block;
+		padding-bottom: 15px;
+	}
+	.hyper-Navigation li:before{
+		content: none;
+	}
+	.hyper-menu-trigger{
+		display: block;
+	}
+}
+
+.hyper-Block{
+	background-color: #1f242b;
+   border-radius: 5px;
+   float: left;
+   max-width: 52.5%;
+   height: auto;
+   min-height: 600px;
+   margin-left:5%;
+   margin-top:1%;
+   margin-bottom:30px;
+   width: 52.5%;
+   padding-bottom: 30px;
+   position:relative;
+   	box-shadow: 3px 3px 3px #02090f;
+}
+.hyper-Block_title{
+	padding-left:20px;
+	color:#FFFFFF;
+}
+.hyper-Block_table{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+}
+
+.hyper-Current{
+   background-color:#1F242B;
+   box-shadow: 3px 3px 3px #02090f;
+   border-radius: 5px;
+   float: left;
+   max-width:35%;
+   width: 35%;
+   word-wrap: break-word;
+   margin-top:1%;
+   margin-left: 2.5%;
+   color:#FFFFFF;
+}
+.hyper-Current_info{
+	padding-left:20px;
+	font-size:120%;
+	background-color:#353f4d;
+	padding-top:10px;
+	padding-bottom: 5px;
+}
+.hyper-Search{
+   background-color: #1f242b;
+   box-shadow: 3px 3px 3px #02090f;
+   border-radius: 5px;
+   float: left;
+   max-width: 35%;
+   width: 35%;
+   margin-top:2.5%;
+   margin-left:2.5%;
+}
+.hyper-Panel{
+	background-color: #353f4d;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	margin-top:20px;
+	padding-top:10px;
+	margin-bottom: -20px !important;
+}
+.hyper-Search_top{
+	padding-left:20px;
+	margin-bottom:20px;
+	color:#FFFFFF;
+}
+.hyper-Results{
+	padding-left: 20px;
+	font-size:130%;
+	box-shadow: 3px #02090f;
+	color:#FFFFFF;
+}
+.hyper-Results_button{
+	padding-bottom: 20px;
+	text-align:center;
+	font-size:300%;
+	box-shadow: 3px 3px 3px #02090f;
+}
+
+.hyper-Submit{
+	width:280px;
+	height: 40px;
+}
+.hyper-Submit:hover{
+	cursor:pointer;
+}
+
+.hyper-Network{
+       margin-left: 33px;
+    background-color: #1f242b;
+    border-radius: 10px;
+    margin-top: 2.5%;
+    /* float: right; */
+    max-width: 100%;
+    width: 50%;
+    margin-right: 5%;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    box-shadow: 3px 3px 3px #02090f;
+    color: #FFFFFF;
+}
+.hyper-Network_child{
+	text-align: center;
+}
+
+.hyper-Graph{
+	box-shadow: 3px 3px 3px #02090f;
+	height: auto;
+	float: left;
+	width: 90%;
+	background-color: #1f242b;
+	margin-left: 5%;
+	margin-bottom: 30px;
+	border-radius: 5px;
+}
+.hyper-Graph h2{
+	padding-left:20px;
+	font-size:150%;
+}
+
+.hyer-Performance{
+	background-color: #353F4D;
+	float: left;
+	color:#FFFFFF;
+	border-radius:5px;
+	height: 300px;
+	width:27.5%;
+	max-width:27.5%;
+	margin-left:2.5%;
+	box-shadow: 3px 3px 3px #02090f;
+}
+.hyper-Chaincode{
+	float:left;
+	width:31.25%;
+	height:300px;
+	max-width:31.25%;
+	background-color: #353F4D;
+	color:#FFFFFF;
+	border-radius: 5px;
+	margin-left:2.5%;
+	box-shadow: 3px 3px 3px #02090f;
+}
+.hyper-Volume{
+	float:left;
+	width:31.25%;
+	height:300px;
+	max-width:31.25%;
+	background-color: #353F4D;
+	color:#FFFFFF;
+	border-radius: 5px;
+	margin-left:2.5%;
+	box-shadow: 3px 3px 3px #02090f;
+}
+
+.hyper-Symbol{
+	font-weight: bold;
+	margin:0;
+	color:orange;
+	margin-bottom:-14%;
+}
+.hyper-Data{
+	font-size:200%;
+	font-weight: bold;
+	text-align: center;
+	margin:0;
+}
+.hyper-Symbol2{
+	font-weight: bold;
+	color:#24B3DC;
+	font-size:120%;
+	text-align:right;
+	margin-top:-14%;
+}
+
+.hyper-Latency{
+	float:left;
+	margin-left:5%;
+	width:42.5%;
+	max-width:42.5%;
+}
+.hyper-Latency h3{
+	padding-bottom:5%;
+	padding-top:5%;
+}
+.hyper-Latency hr{
+	margin-bottom:25%;
+	margin-top:15%;
+}
+
+
+.hyper-Capacity{
+	float:left;
+	margin-left:5%;
+	width:42.5%;
+	max-width:42.5%;
+}
+.hyper-Capacity h3{
+	padding-bottom:5%;
+	padding-top:5%;
+
+}
+.hyper-Capacity hr{
+	margin-bottom:25%;
+	margin-top:15%;
+}
+
+.hyper-Chaincode p {
+	font-size:130%;
+}
+.hyper-Volume p{
+	font-size:130%;
+}
+
+.hyper-chart {
+    background: #1F242B;
+    padding: 3px;
+    margin-right:5%;
+    border-radius:5px;
+    margin-top:5%;
+    box-shadow: 2px 2px 2px #666;
+    height: 120px;
+}
+
+.hyper-chart div {
+  width:0;
+  transition: all 1s ease-out;
+}
+
+.hyper-chart div {
+  max-width:90%;
+  font: 10px sans-serif;
+  background-color: #103E69;
+  text-align: right;
+  padding: 3px;
+  margin: 5px;
+  color: white;
+ }
+
+
+.hyper-Top{
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	background-color: #103e69;
+	padding-top:1px;
+	padding-bottom:1px;
+	border-bottom: 1px solid black;
+}
+
+.hyper-Graph2{
+	float:right;
+	overflow: scroll;
+	overflow-y:hidden;
+	position: relative;
+	color:#FFFFFF;
+	width:46.25%;
+	max-width: 46.25%;
+	margin-top:5%;
+	margin-right:2.5%;
+	margin-bottom:5%;
+	background-color: #353F4D;
+	box-shadow: 3px 3px 3px #02090f;
+}
+.hyper-Graph2-content{
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#hyper-line_graph{
+	background: #1F242B;
+	width:90%;
+	height: 400px;
+	width: 500px;
+	margin-left:5%;
+	margin-top:20px;
+    box-shadow: 2px 2px 2px #666;
+}
+
+#hyper-bar_graph{
+	background: #1F242B;
+	height: 400px;
+	width: 500px;
+	margin-left:5%;
+	margin-top:20px;
+	margin-bottom:20px;
+   box-shadow: 2px 2px 2px #666;
+}
+.hyper-x.axis{
+	fill:#FFFFFF;
+}
+.hyper-y.axis{
+	fill:#FFFFFF;
+}
+
+.hyper-Trans{
+	box-shadow: 3px 3px 3px #02090f;
+	border-radius: 5px;
+	float: left;
+	width: 90%;
+	background-color: #1f242b;
+	word-wrap: break-word;
+	margin-left:5%;
+	margin-right:5%;
+	margin-bottom: 30px;
+}
+.hyper-Loading_symbol{
+	text-align: center;
+	font-size:200%;
+}
+
+.hyper-modalDialog {
+	transition: all 2.5s;
+  /*display:block;*/
+	position: fixed;
+	font-size: 80%;
+	font-family: Arial, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	color:black;
+	background: rgba(0,0,0,0.8);
+	opacity:0;
+	transition: opacity 400ms ease-in;
+	pointer-events:none;
+    overflow:scroll;
+    scroll-behavior:auto;
+    word-wrap: break-word;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+}
+
+.hyper-modalDialog:target {
+	opacity:1;
+	pointer-events: all;
+	z-index: 100;
+}
+
+.hyper-modalDialog > div {
+	width: 700px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 5px;
+	background: #1F242B;
+	color:#FFFFFF;
+}
+
+.hyper-close {
+	border:1px solid black;
+	cursor: pointer;
+	background: #344B61;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	border-radius: 12px;
+	box-shadow: 1px 1px 3px #000;
+	padding: 14px 16px;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	outline: 0;
+	font-size:150%;
+}
+
+
+
+.hyper-footer{
+	margin: 0;
+	float: left;
+	width: 100%;
+	height: 70px;
+	background-color:#212832;
+	background-image: url('image.png');
+	background-size: 100% 1000%;
+	background-position: -30px -100px;
+}
+.Footer_content{
+	padding-top:20px;
+	font-size:150%;
+	font-weight: bolder;
+	text-decoration: none;
+	text-align: center;
+	color:#FFFFFF;
+	outline: 0;
+	width: 90%;
+	margin-right:5%;
+	margin-left:5%;
+}
+
+.hyper-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+    width:100%;
+    word-wrap: break-word;
+    border-radius:6px;
+    text-align: center;
+
+
+}
+.hyper-table th, .hyper-table td{
+	padding: 10px;
+}
+.hyper-table tr{
+  border-bottom: 1px solid black !important;
+  border-radius:6px;
+}
+.hyper-table tr:nth-child(even) {
+	background-color:#1F242B;
+	color:#FFFFFF;
+}
+.hyper-table tr:nth-child(odd) {
+    background-color:#353F4D;
+    color:#FFFFFF;
+}
+.hyper-table tr:first-child{
+	 background-color:#353F4D;
+	 color:#FFFFFF;
+}
+button{
+	cursor: pointer;
+}
+@media only screen and (max-width: 1036px) {
+
+.hyper-Block{
+	max-width: 90% !important;
+	margin-left:5% !important;
+	margin-right:5% !important;
+	width: 90% !important;
+	padding:0 !important;
+}
+.hyper-Current{
+	margin-left:5%;
+	margin-top:2.5%;
+	max-width:42.5% !important;
+	width: 42.5% !important;
+	padding:0 !important;
+}
+.hyper-Search{
+	float: right !important;
+	margin-right:5% !important;
+	max-width:42.5% !important;
+	width:42.5% !important;
+}
+.hyper-Performance{
+	width:90% !important;
+	max-width: 90% !important;
+	margin-left:5% !important;
+	margin-right:5% !important;
+	height: 200px !important;
+	margin-bottom:2.5%;
+}
+.hyper-Chaincode{
+	width:90% !important;
+	max-width: 90% !important;
+	margin-left:5% !important;
+	margin-right:5% !important;
+	margin-bottom:20px;
+}
+.hyper-Volume{
+	width:90% !important;
+	max-width: 90% !important;
+	margin-left:5% !important;
+	margin-right:5% !important;
+	margin-bottom:2.5%;
+}
+.hyper-Capacity h3{ padding-bottom:0 !important}
+.hyper-Capacity hr{
+	margin-bottom:25px !important;
+	margin-top:25px !important;
+}
+.hyper-Latency h3{ padding-bottom:0 !important}
+.hyper-Latency hr{
+	margin-bottom:25px !important;
+	margin-top:25px !important;
+}
+.hyper-Symbol { margin-bottom:-12%; }
+
+.hyper-Graph2{
+	max-width: 90% !important;
+	width: 90% !important;
+	margin-right:5% !important;
+	margin-top:0;
+	margin-bottom:2.5% !important;
+}
+
+
+.hyper-Network{
+	max-width:90% !important;
+	margin-left:5%;
+	margin-right:5%;
+	width:90% !important;
+}
+.hyper-Header{
+	padding-right: 0px !important;
+	margin-top:0px !important;
+	margin-bottom:10px !important;
+}
+.hyper-modalDialog > div {
+	width: 400px !important;
+}
+}
+
+
+@media only screen and (max-width: 700px) {
+
+.hyper-Search{
+	max-width:90% !important;
+	margin-left:5% !important;
+	margin-right:5% !important;
+	width:90% !important;
+	padding: 0 !important;
+	background-repeat: no-repeat !important;
+}
+
+.hyper-Current{
+	max-width:90% !important;
+	margin-left:5% !important;
+	margin-right:5% !important;
+	width:90% !important;
+}
+.hyper-Network{
+	padding: 0 !important;
+}
+.settle-input{
+    width: 310px;
+    margin: 0 15px;
+    border-radius: 3px;
+    border: 1px solid #a4a4a4;
+    height: 30px;
+    background: #0468b4;
+    padding: 0 10px;
+}
+.margin-tp-btm-8{
+      margin: 8px 0;
+}
+.settle-footer-btn{
+    max-width: 600px;
+    position: absolute;
+    right: 360px;
+    bottom: 140px;
+}
+.hyper-Header{
+	margin-top:-30px !important;
+	margin-bottom: -20px !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 200% !important;
+}
+
+    .hyper-table {
+      border-bottom: 0;
+    }
+    .hyper-table thead {
+      display: none;
+    }
+
+    .hyper-table tr {
+      display: block;
+    }
+
+    .hyper-table td {
+      display: block;
+      text-align: right;
+      font-size: 13px;
+    }
+
+    .hyper-table td:last-child {
+      border-bottom: 0;
+    }
+
+    .hyper-table td:before {
+      content: attr(data-label);
+      float: left;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+}
+.modal-body p {
+  word-wrap: break-word !important;
+}
+.panelBody p{word-wrap: break-word !important;}
+
+.btnWidth{height: 25px;
+  width: 60px;
+  font-size: 15px;
+  line-height: 10px;}

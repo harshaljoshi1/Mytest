@@ -1,0 +1,66 @@
+<div class="modal-content">
+    <form name="form" >
+        <div class="modal-header">
+            <button type="button" 
+                    class="close" 
+                    ng-click="cancel()"
+                    data-dismiss="modal" 
+                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Reverse Step</h4>
+        </div>
+          <div class="modal-body">
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label" >Current Stage</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Current Stage" ng-model="currentStage" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Previous Stage</label>
+                     <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Previous Stage" ng-model="previousStage" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Anchor ID</label>
+                      <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Anchor ID" ng-model="anchorID" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Invoice ID</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Invoice ID" ng-model="invoiceID" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Remarks</label>
+                    <div class="col-lg-8">
+                        <input type="text"
+                               class="form-control"
+                               ng-model="reverse.Remarks"
+                               ng-required="true">
+                    </div>
+                </div>
+            </div>
+        <div class="modal-footer">
+            <button type="button"
+                    ng-click="save()"
+                    ng-disabled="form.$invalid"
+                    class="btn btn-success">
+                Accept
+            </button>
+            <button type="button"
+                    ng-click="cancel()"
+                    class="btn btn-danger"
+                    data-dismiss="modal">
+                Reject
+            </button></div>
+            <div class="alert-danger" ng-if="error.length > 0 " ng-bind="error"></div>
+
+        </div>
+    </form>
+</div>
+

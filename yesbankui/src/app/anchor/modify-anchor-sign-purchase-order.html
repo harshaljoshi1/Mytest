@@ -1,0 +1,382 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>Anchor Sign Purchase Order</h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Your Page Content Here -->
+    <div class="row">
+      <div class="graph-box bg-white">
+        <div ng-repeat="item in chart track by $index" style="height: 120px">
+          <nvd3 options="chartOptions[$index]" data="chart[$index]"></nvd3>
+        </div>
+      </div>
+    </div>
+    <!-- Default box -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="box box-primary box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title" >Selected Vendor Details</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <form class="form-horizontal">
+            <div class="box-body" >
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Vendor Name</label>
+
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" ng-model="anchorProgramId.VendorFirstName" placeholder="Vendor Name" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-6 control-label">PO Amount</label>
+
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" ng-model="anchorProgramId.anchorpoamount" placeholder="PO Amount">
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-6 control-label">PO Number</label>
+
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" ng-model="anchorProgramId.POId"  placeholder="PO Id">
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-6 control-label">Anchor Program Id</label>
+
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" ng-model="anchorProgramId.AnchorProgramId"  placeholder="Anchor Program Id" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Anchor Interest Period</label>
+
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" ng-model="anchorProgramId.anchorInterestPeriod"  placeholder="Anchor Interest Period" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Anchor Interest</label>
+
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" ng-model="anchorProgramId.anchorInterest" placeholder="Anchor Interest" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-6 control-label">Anchor Grace Interest</label>
+
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" ng-model="anchorProgramId.anchorGraceInterest"  placeholder="Anchor Grace Interest" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Anchor Penal Interest</label>
+
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" ng-model="anchorProgramId.anchorPenalInterest"  placeholder="Anchor Penal Interest" disabled>
+                </div>
+              </div>
+              <div class="text-right">
+                <button class="btn btn-primary btn-block btn-flat btn-height-40" ng-click="modifyAnchorSignPo(anchorProgramId)">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="box box-primary box-solid collapsed-box">
+          <div class="box-header with-border">
+            <h3 class="box-title">Click + To Upload PO</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <div class="text-right">
+              <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#pdfViewerLabel">Full Screen</button>
+            </div>
+            <div id="myCanvas" style="width: 100%;height:365px;overflow: scroll" ></div>
+            <!--<embed src="" width="500" height="500" type ="application/pdf" id="pdfViewer"></embed>-->
+          </div>
+          <div class="box-footer">
+            <div class="col-sm-12">
+              <div class="col-sm-7">
+                <input type="file" ngf-select ng-model="picFile" name="file" ngf-max-size="5MB" required
+                       ngf-model-invalid="errorFile">
+                <!--<i ng-show="myForm.file.$error.required">*required</i><br>-->
+                <i ng-show="myForm.file.$error.maxSize">File too large
+                  {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"/>
+              </div>
+              <div class="col-sm-5">
+                <button class="btn btn-primary btn-sm" ng-click="uploadPicBase(picFile)">View Document
+                </button>
+                  <span class="progress" ng-show="picFile.progress >= 0">
+                    <div style="width:{{picFile.progress}}%"
+                         ng-bind="picFile.progress + '%'"></div>
+                  </span>
+                <span ng-show="picFile.result">Upload Successful</span>
+                <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="box">
+      <div class="box-header with-border">
+
+
+        <div class="box-tools pull-right">
+          &lt;!&ndash;<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+            <i class="fa fa-minus"></i></button>
+          &lt;!&ndash; <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"> &ndash;&gt;
+          &lt;!&ndash; <i class="fa fa-times"></i></button> &ndash;&gt;
+        </div>
+      </div>
+      <div class="box-body">
+
+
+        <table id="mainTbl">
+          <tbody>
+          <tr>
+            <td class="smlBrk" style="height: 10px;"><br/></td>
+            <td id="txtBxRw"></td>
+            <td class="smlBrk"><br/></td>
+            <td id="userStuff">
+              <div class="rtTxt" id="user"><span id="userDets"><span id="username"></span>
+      (<span id="userType">Anchor</span>: <span id="company"></span>)</span>�<span
+                onclick="toggleMenu()" id="menuBtn">
+      <div class="menuBar"></div>
+      <div class="menuBar"></div>
+      <span class="menuWhiteBlock" id="userBlock"></span></span></div>
+            </td>
+            <td class="smlBrk"><br/></td>
+          </tr>
+          <tr>
+            <td class="smlBrk"><br/></td>
+            <td colspan="3" class="dropTd">
+              <div id="mainMenu" class="usersDropMargin">
+                <div class="dropDowns" id="users"><span class="userHdr">Switch User...</span></div>
+              </div>
+              <br/></td>
+            <td class="smlBrk"><br/></td>
+          </tr>
+          <tr>
+            <td class="smlBrk"><br/></td>
+            <td id="lftBxHd" class="bxHd">Yes Bank Anchor Program Id<img width="17" height="20" class="rtBtn noPoint"
+                                                                         src="Icons/asset.svg"/></td>
+            <td class="smlBrk"><br/></td>
+            <td id="rtBxHd" class="bxHd">Upload Purchase Order <img width="15" height="20" class="rtBtn noPoint"
+                                                                    src="Icons/person.svg"/></td>
+            <td class="smlBrk"><br/></td>
+          </tr>
+          <tr id="mdHldr">
+            <td class="smlBrk"><br/></td>
+            <td id="lftBxMd" class="bxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input type="hidden" value="1" class="mult"/></div>
+              </div>
+          <span class="contentHldr">
+            <div class="content">
+              <table id="selanchoridTbl">
+              </table>
+            </div>
+          </span> <br/>
+            </td>
+            <td class="smlBrk"><br/></td>
+            <td id="rtBxMd" class="bxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input type="hidden" value="1" class="mult"/></div>
+              </div>
+            <span class="contentHldr">
+             <embed src="/data/Sample1.pdf" width="600px" height="400px"/>
+              <div class="content" id="recipientInfo"></div>
+            </span><br/>
+            </td>
+            <td class="smlBrk"><br/>
+            </td>
+          </tr>
+          <tr>
+            <td class="smlBrk"><br/>
+            </td>
+            <td id="lftBxBtm" class="bxBtm"><img width="15" height="15" id="addToAnchorid"
+                                                 class="lftBtn" src="Icons/Anchor/add.svg"/>
+            <td class="smlBrk"><br/>
+            </td>
+            <td id="rtBxBtm" class="bxBtm"><img width="12" height="15" id="remFrmAnchorid"
+                                                class="rtBtn" src="Icons/Anchor/minus.svg"/>
+
+              <form ref='uploadForm' id='uploadForm'
+                    action='/uploaded/files/'
+                    method='post'
+                    encType="multipart/form-data"><input type="file" name=file/>
+                <input type='submit' value='Upload!'/>
+              </form>
+            </td>
+            </td>
+            <td class="smlBrk"><br/>
+            </td>
+          </tr>
+          <tr>
+            <td class="smlBrk"><br/>
+            </td>
+            <td><span id="cclPg" class="lftBtn mnBtn">Cancel</span></td>
+            <td class="smlBrk"><br/>
+            </td>
+            <td><span id="subPg" class="rtBtn mnBtn">Transfer Anchor Document </span></td>
+            <td class="smlBrk"><br/>
+            </td>
+          </tr>
+          <tr>
+            <td class="smlBrk gapRw"><br/>
+            </td>
+            <td class="gapRw"><br/>
+            </td>
+            <td class="smlBrk gapRw"><br/>
+            </td>
+            <td class="gapRw"><br/>
+            </td>
+            <td class="smlBrk gapRw"><br/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="chooseOptTbl">
+          <tbody>
+          <tr>
+            <td id="chooseOptHd" class="bxHd"><span>Anchor Details</span><img width="15"
+                                                                              height="15" id="clsOpt" class="rtBtn"
+                                                                              src="Icons/close.svg"/></td>
+          </tr>
+          <tr>
+            <td id="chooseOptMd" class="bxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input type="hidden" value="1" class="mult"/></div>
+              </div>
+            <span class="contentHldr">
+              <div class="content">
+                <table id="vhclsTbl">
+                </table>
+              </div>
+            </span></td>
+          </tr>
+          <tr>
+            <td id="chooseOptBtm" class="bxBtm"><img width="15" height="15" id="cclOpt"
+                                                     class="lftBtn" src="Icons/Anchor/cancel.svg"/><img width="20"
+                                                                                                        height="15"
+                                                                                                        id="doneOpt"
+                                                                                                        class="rtBtn"
+                                                                                                        src="Icons/Anchor/tick.svg"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="chooseRecTbl">
+          <tbody>
+          <tr>
+            <td id="chooseRecHd" class="bxHd"><span>Anchor</span><img width="15" height="15"
+                                                                      id="clsRec" class="rtBtn"
+                                                                      src="Icons/close.svg"/></td>
+          </tr>
+          <tr>
+            <td id="chooseRecMd" class="bxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input type="hidden" value="1" class="mult"/></div>
+              </div>
+            <span class="contentHldr">
+              <div class="content">
+                <table id="recsTbl">
+                </table>
+              </div>
+            </span></td>
+          </tr>
+          <tr>
+            <td id="chooseRecBtm" class="bxBtm"><img width="15" height="15" id="cclRec"
+                                                     class="lftBtn" src="Icons/Anchor/cancel.svg"/><img width="20"
+                                                                                                        height="15"
+                                                                                                        id="doneRec"
+                                                                                                        class="rtBtn"
+                                                                                                        src="Icons/Anchor/tick.svg"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="confTbl">
+          <tbody>
+          <tr>
+            <td id="chooseConfHd" class="bxHd"><span>Transfer Complete</span></td>
+          </tr>
+          <tr>
+            <td id="chooseConfMd" class="bxMd">
+              <div id="confTxt"></div>
+            </td>
+          </tr>
+          <tr>
+            <td id="chooseConfBtm" class="bxBtm"><img width="20" height="15" id="doneConf"
+                                                      class="rtBtn" src="Icons/Anchor/tick.svg"/></td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="failTransfer">
+          <tbody>
+          <tr>
+            <td id="failHd" class="bxHd"><span>Transfer Failed</span></td>
+          </tr>
+          <tr>
+            <td id="failMd" class="bxMd">
+              <div id="failTxt"></div>
+            </td>
+          </tr>
+          <tr>
+            <td id="failBtm" class="bxBtm"><img width="20" height="15" id="doneFail"
+                                                class="rtBtn" src="Icons/tickRed.svg"/></td>
+          </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="box-footer">
+         Footer
+       </div>
+    </div>-->
+
+  </section>
+</div>
+<div class="modal fade" id="pdfViewerLabel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">PDF Viewer</h4>
+      </div>
+      <div class="modal-body">
+
+        <div id="myCanvas1" style="width: 100%;height:600px;overflow: scroll;" ></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!--<button type="button" class="btn btn-primary">Save</button>-->
+      </div>
+    </div>
+  </div>
+</div>

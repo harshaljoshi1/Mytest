@@ -1,0 +1,158 @@
+<style>
+.bullet {
+	font: 10px sans-serif;
+}
+
+.bullet .marker {
+	stroke: #000;
+	stroke-width: 2px;
+}
+
+.bullet .tick line {
+	stroke: #666;
+	stroke-width: .5px;
+}
+
+.bullet .range.s0 {
+	fill: #eee;
+}
+
+.bullet .range.s1 {
+	fill: #ddd;
+}
+
+.bullet .range.s2 {
+	fill: #ccc;
+}
+
+.bullet .measure.s0 {
+	fill: steelblue;
+}
+
+.bullet .title {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.bullet .subtitle {
+	fill: #999;
+}
+</style>
+<script src="../app/main/bullet.js"></script>
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+
+	<section class="content">
+		<div class="graph-box bg-white">
+			<div ng-repeat="item in chart" style="height: 200px">
+				<nvd3 options="chartOptions[$index]" data="chart[$index]"></nvd3>
+			</div>
+		</div>
+		<div>
+			<p class="text-red white-bg pad-8">
+					<span class="legend-style"><span class="bold">0</span>
+					- Program Template Created,</span> 
+					<span class="legend-style"><span class="bold">1</span>
+					- Program Initiated,</span> 
+					<span class="legend-style"><span class="bold">2</span> 
+					- Anchor Places Purchase Order,</span> 
+					<span class="legend-style"><span class="bold">3</span> 
+					- Vendor Acknowledges Purchase Order,</span> 
+					<span class="legend-style"><span class="bold">4</span>
+					- Vendor Creates Invoice Template,</span> 
+					<span class="legend-style"><span class="bold"> 5</span> 
+					- Vendor Updates Invoice Details,</span> 
+					<span class="legend-style"><span class="bold"> 6</span> 
+					- Vendor Transfers Invoice To Anchor,</span> 
+					<span class="legend-style"><span class="bold"> 7</span> 
+					- Anchor Approves Invoice ,</span> 
+					<span class="legend-style"><span class="bold">8</span> 
+					- Anchor Authorizes Invoice Payment,</span> 
+					<span class="legend-style"><span class="bold"> 9</span> 
+					- Vendor Requests Bank For Invoice Payment,</span> 
+					<span class="legend-style"><span class="bold">10</span> 
+					- Bank Initiates Invoice Payment,</span> 
+					<span class="legend-style"><span class="bold">11</span>
+					- Maker Enters Invoice Payment Details,</span> 
+					<span class="legend-style"><span class="bold">12</span> 
+					- Checker Approves Invoice Payment,</span> 
+					<span class="legend-style"><span class="bold">13</span> 
+					- Vendor Receives Payment,</span> 
+					<span class="legend-style"><span class="bold">14</span> 
+					- Invoice Payment Settled,</span>
+					<span class="legend-style"><span class="bold"> 15</span> 
+					- Anchor Program Closed</span>
+			</p>
+		</div>
+		<div class="row status_section">
+			<div class="col-md-12">
+				<div class="col-md-12">
+					<div class="box">
+						<div class="box-header with-border">
+							<h3 class="box-title blue-font">Live Stats</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool"
+									data-widget="collapse">
+									<i class="fa fa-minus"></i>
+								</button>
+							</div>
+						</div>
+						<div class="box-body no-padding">
+							<div class="col-sm-12 bg-white">
+								<div class="row">
+									<div class="col-lg-3 col-xs-6">
+										<div class="row">
+											<!-- small box -->
+											<div class="small-box bg-aqua relative">
+												<img src="assets/img/stat-bg-1.png" class="stat-bg absolute">
+												<div class="inner absolute">
+													<h3>#{{blockNumber}}</h3>
+
+													<h4>Current Block</h4>
+												</div>
+												<div class="icon">
+													<i class="ion ion-bag"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3 no-padding border-right-blue">
+										<div class="col-sm-12">
+											<div>
+												<span class="font-27 blue-font">{{lastblockCreationDate * 1000  | date:'medium' }}</span>
+											</div>
+											<div class="pad-top-5 blue-font">Created On</div>
+										</div>
+									</div>
+									<div class="col-sm-3 no-padding border-right-blue">
+										<div class="col-sm-12">
+											<div>
+												<span class="font-28 blue-font">{{transactionsInLastBlock}}</span>
+											</div>
+											<div class="pad-top-5 blue-font">Transactions in Last
+												Block</div>
+										</div>
+									</div>
+									<div class="col-sm-3 no-padding">
+										<div class="col-sm-12">
+											<div>
+												<span class="font-28 blue-font">{{avgBlockTime}}</span>
+											</div>
+											<div class="pad-top-5 blue-font">Avg Block Time</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="box">
+					<div ng-include="'app/main/hyperedge-explorer.html'"></div>
+				</div>
+			</div>
+			<div class="col-md-12"></div>
+	</section>
+</div>

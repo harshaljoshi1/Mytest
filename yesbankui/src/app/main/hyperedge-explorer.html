@@ -1,0 +1,198 @@
+<!-- Copyright DTCC 2016 All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.-->
+<!--<!doctype html>
+<html lang="en" ng-app=explorer>
+	<header>
+		<script src = angular.js></script>
+     		<script src = scripts.js></script>
+     		<script src="http://d3js.org/d3.v2.js"></script>
+     		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+     		<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title> Hyperledger Explorer </title>
+		<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		 <div id="header" class="Header" >
+	    		<h1>Hyperledger Explorer </h1>
+		</div>
+	</header>
+
+
+
+
+	    <div class="col-md-12">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title blue-font">Live Stats</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <div class="col-sm-12 bg-white">
+            <div class="row">
+              <div class="col-lg-3 col-xs-6">
+              <div class="row">
+                <!-- small box -->
+
+<div id="block" ng-controller="BLOCKS">
+<div class="col-md-12">
+	<div class="col-md-12">
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title blue-font">Recent Blocks</h3>
+
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool"
+						data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+				</div>
+			</div>
+			<div class="sectionList">
+				<ul class="list-inline bg-blue">
+					<li class="sectionItem" ng-repeat="n in range"><span>
+							<div class="col-lg-12 col-xs-12 bg-blue height-100" ng-click="open($index)">
+								<div class="row">
+									<!-- small box -->
+									<div class="recent-box  bg-aqua relative">
+										<img src="assets/img/red-tick.png" class="stat-bg-1 absolute">
+										<div class="inner absolute">
+											<h3>#{{ size - $index -1 }}</h3>
+										</div>
+										<div class="icon">
+											<i class="ion ion-bag"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+					</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--  MODEL WINDOW -->
+
+<script type="text/ng-template" id="myModalContent.html">
+
+
+              <div class="modal-body" id="modal-body">
+<div class="modal-content-style">
+                <h2 class="modal-text width-600  font-20"> Extra Non Hash Data</h2>
+<br>
+                <p class="modal-text width-600 line-height-12"><span class="font-16"> Date : </span> <span> {{ value.nonHashData.localLedgerCommitTimestamp.date }} </span> </p>
+
+                <p class="modal-text width-600 line-height-12"><span class="font-16"> Seconds : </span> <span> {{ value.nonHashData.localLedgerCommitTimestamp.seconds}} </span> </p>
+
+                <p class="modal-text width-600 line-height-12"><span class="font-16"> Nanos : </span> <span> {{ value.nonHashData.localLedgerCommitTimestamp.nanos}} </span> </p>
+
+                <p class="modal-text width-600 line-height-12"><span class="font-16"> Consensus Metadata : </span> <span> {{ value.consensusMetadata}} </span> </p>
+
+                <p class="modal-text width-600 line-height-12"><span class="font-16"> Transaction Results : </span> <span> {{ value.nonHashData.transactionResults}} </span> </p>
+                 <hr class="hr-style"> 
+ <h2 class="modal-text font-20"> Full Hash </h2>
+
+                <p class="modal-text width-600 line-height-15"><span class="font-16"> State Hash : </span> <span> {{ value.stateHash}} </span> </p>
+
+                <p class="modal-text width-600 line-height-15"><span class="font-16"> Previous Hash : </span> <span> {{ value.previousBlockHash }} </span> </p>
+  <hr class="hr-style">                
+ <h2  class="modal-text font-20 width-600">Transaction Information</h2>
+                <h5 class="modal-text width-600">Total number of transactions : {{ value.transactions.length }} </h5>
+                <div ng-repeat="transactions in value.transactions ">
+                  <p class="modal-text width-600"><span class="font-16">Transaction#</span> <span>{{ $index+1 }} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">ChaincodeID : </span> <span>{{transactions.chaincodeID }} </span></p>
+
+                  <p class="modal-text width-600"><span class="font-16">UUID : </span> <span> {{ transactions.uuid }} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">Date : </span> <span> {{ transactions.date }} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">Seconds : </span> <span>{{ transactions.timestamp.seconds}} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">Nanos : </span> <span> {{ transactions.timestamp.nanos}} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">Level : </span> <span> {{ transactions.confidentialityLevel }} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">Payload : </span> <span> {{ transactions.payload }} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">Nonce : </span> <span> {{ transactions.nonce }} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">Cert : </span> <span> {{ transactions.cert }} </span> </p>
+
+                  <p class="modal-text width-600"><span class="font-16">Signature : </span> <span> {{ transactions.signature }} </span> </p>
+</div>
+                </div>
+
+             <div class="text-right"><button class="btn-border-radius-2 btn red-bg white cancel-btn absolute" ng-click="cancel()">Cancel</button></div>
+              </div>
+            </script>
+<!-- MODEL WINDOW -->
+<div class="clear"></div>
+
+
+<div class="col-md-12" ng-controller="CURRENT">
+	<div class="col-md-12">
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title blue-font">Current State of Blockchain</h3>
+
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool"
+						data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body box-body-1 no-padding">
+				<div class="col-sm-12">
+					<div class="row bg-white">
+						<div class="col-sm-6 pad-10 margin-10 text-left">
+							<div class="blue-font pad-top-btm-3">
+								<span class="font-20">Height : </span><span>{{ info.height }}</span>
+							</div>
+							<div class="blue-font pad-top-btm-3">
+								<span class="font-20">Current Hash : </span><span>{{ info.currentBlockHash | limitTo: 35}}..</span>
+							</div>
+							<div class="blue-font pad-top-btm-3">
+								<span class="font-20">Previous Hash : </span><span>{{ info.currentBlockHash | limitTo: 35}}..</span>
+							</div>
+						</div>
+
+				<!--	<div class="col-sm-5 pad-10 margin-10 text-right"  ng-controller="SEARCH">
+							<div class="col-md-12">
+								<input type="text" class="form-control input-box" ng-model="response"
+									placeholder="UUID / Block Number">
+							</div>
+							<div class="col-xs-6 text-left margin-top-btm-22">
+								<span class="blue-font">Clear</span>
+							</div>
+							<div class="col-xs-2"></div>
+							<div class="col-xs-4 text-right">
+								<button
+									class=" font-20 btn-border-radius-1 btn btn-primary btn-block btn-flat margin-top-btm-10"
+									ng-click="search()">Search</button>
+							</div> -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>

@@ -1,0 +1,339 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>Vendor Payment</h1>
+    <ol class="breadcrumb">
+      <!--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>-->
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Your Page Content Here -->
+    <div class="row">
+      <div class="graph-box bg-white">
+       <div ng-repeat="item in chart track by $index"  style="height: 120px"> 
+  <!--     <tr ng-repeat="item in loopThroughAnchorProgramIds" ng-if="item.moStatus == '7' || item moStatus == '9'" > -->
+          <nvd3 options="chartOptions[$index]" data="chart[$index]"></nvd3>
+        </div>
+      </div>
+    </div>
+    <!-- Default box -->
+
+    <div class="spinner1" ng-show="loading">
+      <img src="http://i49.tinypic.com/j5z8mb.gif" alt="Loading..." />
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Initiate payment</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <div class="box">
+              <div class="box-body no-padding search-table-outter">
+                <table class="table table-condensed">
+                  <tr>
+                    <th>Vendor Name</th>
+                    <th>Amount</th>
+                    <th>Payment Mode</th>
+                    <th>Bank</th>
+                    <th>Invoice</th>
+                    <th>PO</th>
+                    <th>IFSC Code</th>
+                   <th></th>
+                  </tr>
+
+
+                  <tr ng-repeat="ProgramId in loopThroughAnchorProgramIds" ng-if="ProgramId.moStatus == '8' ||  ProgramId.moStatus == '9'" height="35">
+                    <td>{{ProgramId.vendorFname}}</td>
+                    <td>{{ProgramId.approvedinvoiceAmount}}</td>
+                    <td>{{ProgramId.paymentChannel}}</td>
+                    <td>{{ProgramId.vendorBank}}</td>
+                    <td>{{ProgramId.moID}}</td>
+                    <td>{{ProgramId.anchOrPOID}}</td>
+                    <td>{{ProgramId.venDorbank}}</td>
+                 <!--   <td>
+                      <div class="radio text-center">
+                        <input type="radio" name="optradio" ng-model="select.optradio" ng-value="ProgramId" /></div>
+
+                    </td> -->
+                    <td><button class="btn btn-primary btn-sm" ng-click="IntiatePayment(ProgramId);getPaymentDetails(ProgramId)">Initiate Payment</button></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row" ng-show="initiatePaymentPanel">
+
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <div class="box box-primary box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Initiating payment</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body no-padding">
+              <form class="form-horizontal" name="paymentForm">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Vendor Name</label>
+
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Vendor Name" ng-model="vendorFname" readonly>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Recievable Amount</label>
+
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Recievable Amount" ng-model="AmountReceivable" readonly>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Discounted Amount</label>
+
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Discounted Amount" ng-model="InterestPayable" readonly>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Payment Mode</label>
+
+                    <div class="col-sm-8">
+                      <input class="form-control" placeholder="Payment Mode"  ng-model="PaymentMode" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Bank</label>
+
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Bank" ng-model="vendorBank" readonly>
+                    </div>
+                  </div>
+                  <div class="form-group by feedback">
+                   <label class="col-sm-4 control-label">Remarks</label>
+                    <div class="col-sm-8">
+                   <input type="text" class="form-control"   ng-model="RemittertoBeneNote" placeholder="Mandatory Remarks" name="Remarks" required>
+                <div ng-if="submitted || paymentForm.Remarks.$dirty"
+                  ng-messages="paymentForm.Remarks.$error" style="color: red"
+                  role="alert">
+                  <div ng-message="required">Remarks is required</div>
+                </div>
+                </div>
+            </div>
+            <div class="form-footer with-border" >
+              <div class="col-sm-12">
+                 <div class="col-sm-6">
+                  <button class="btn btn-primary btn-sm btn-success" ng-disabled ="paymentForm.$invalid" ng-click="fundTransfer(select.optradio,RemittertoBeneNote,PaymentMode);checkerApprove(select.optradio);reload()" >Approved</button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-primary btn-sm btn-danger" ng-click="fundTransfer(select.optradio,RemittertoBeneNote,PaymentMode)">Reject</button>
+                </div>
+              </div>
+            </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="box">
+      <div class="box-header with-border">
+
+
+        <div class="box-tools pull-right">
+          &lt;!&ndash;<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+            <i class="fa fa-minus"></i></button>
+          &lt;!&ndash; <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"> &ndash;&gt;
+          &lt;!&ndash; <i class="fa fa-times"></i></button> &ndash;&gt;
+        </div>
+      </div>
+      <div class="box-body">
+
+
+        <table id="mainTbl">
+          <tr>
+            <td class="smlBrk"></td>
+            <td id="txtBxRw">
+              <a href="index.html">Home</a>
+            </td>
+            <td class="smlBrk"></td>
+            <td id="userStuff">
+              <div id="user" class="rtTxt"><span id="userDets"><span id="username"></span> (<span id="userType">Payment</span>: <span
+                id="company"></span>)</span>&nbsp;<span id="menuBtn" onclick="toggleMenu()"><div
+                class="menuBar"></div><div class="menuBar"></div><span id="userBlock"
+                                                                       class="menuWhiteBlock"></span></span></div>
+            </td>
+            <td class="smlBrk"></td>
+          </tr>
+          <tr>
+            <td class="smlBrk"></td>
+            <td class="dropTd" colspan="3">
+              <div class="usersDropMargin" id="mainMenu">
+                <div id="users" class="dropDowns">
+                  <span class="userHdr">Switch User...</span>
+                </div>
+              </div>
+            </td>
+            <td class="smlBrk"></td>
+          </tr>
+          <tr>
+            <td class="smlBrk"></td>
+            <td class="bxHd" id="lftBxHd">Payment Initiation<img src="Icons/asset.svg" class="rtBtn noPoint"
+                                                                 width="17" height="20"/></td>
+            <td class="smlBrk"></td>
+            <td class="bxHd" id="rtBxHd">Anchor Program ID<img src="Icons/person.svg" class="rtBtn noPoint" width="15"
+                                                               height="20"/></td>
+            <td class="smlBrk"></td>
+          </tr
+          <tr id="mdHldr">
+            <td class="smlBrk"></td>
+            <td class="bxMd" id="lftBxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input class="mult" type="hidden" value="1"/></div>
+              </div>
+        <span class="contentHldr">
+          <div class="content">
+            <table id="selVhclsTbl"></table>
+          </div>
+        </span>
+            </td>
+            <td class="smlBrk"></td>
+            <td class="bxMd" id="rtBxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input class="mult" type="hidden" value="1"/></div>
+              </div>
+              <span class="contentHldr"><div id="recipientInfo" class="content"></div></span></td>
+            <td class="smlBrk"></td>
+          </tr>
+          <tr>
+            <td class="smlBrk"></td>
+            <td class="bxBtm" id="lftBxBtm"><img src="Icons/Payment/add.svg" class="lftBtn" id="addToVhcls" width="15"
+                                                 height="15"/></td>
+            <td class="smlBrk"></td>
+            <td class="bxBtm" id="rtBxBtm"><img src="Icons/Payment/add.svg" class="lftBtn" id="addToRec" width="15"
+                                                height="15"/><img src="Icons/Payment/minus.svg" class="rtBtn"
+                                                                  id="remFrmRec" width="12" height="15"/></td>
+            <td class="smlBrk"></td>
+          </tr>
+          <tr>
+            <td class="smlBrk"></td>
+            <td><span class="lftBtn mnBtn" id="cclPg">Cancel</span></td>
+            <td class="smlBrk"></td>
+            <td><span class="rtBtn mnBtn" id="subPg">Generate Payment</span></td>
+            <td class="smlBrk"></td>
+          </tr>
+          <tr>
+            <td class="smlBrk gapRw"></td>
+            <td class="gapRw"></td>
+            <td class="smlBrk gapRw"></td>
+            <td class="gapRw"></td>
+            <td class="smlBrk gapRw"></td>
+          </tr>
+        </table>
+        <table id="chooseOptTbl">
+          <tr>
+            <td class="bxHd" id="chooseOptHd"><span>Anchor ID</span><img src="Icons/close.svg" class="rtBtn"
+                                                                         id="clsOpt" width="15" height="15"/></td>
+          </tr>
+          <tr>
+            <td class="bxMd" id="chooseOptMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input class="mult" type="hidden" value="1"/></div>
+              </div>
+        <span class="contentHldr">
+          <div class="content">
+            <table id="vhclsTbl"></table>
+          </div>
+        </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="bxBtm" id="chooseOptBtm"><img src="Icons/Payment/cancel.svg" class="lftBtn" id="cclOpt"
+                                                     width="15" height="15"/><img src="Icons/Payment/tick.svg"
+                                                                                  class="rtBtn" id="doneOpt"
+                                                                                  width="20" height="15"/></td>
+          </tr>
+        </table>
+        <table id="chooseRecTbl">
+          <tr>
+            <td class="bxHd" id="chooseRecHd"><span>Dealerships</span><img src="Icons/close.svg" class="rtBtn"
+                                                                           id="clsRec" width="15" height="15"/></td>
+          </tr>
+          <tr>
+            <td class="bxMd" id="chooseRecMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input class="mult" type="hidden" value="1"/></div>
+              </div>
+        <span class="contentHldr">
+          <div class="content">
+            <table id="recsTbl"></table>
+          </div>
+        </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="bxBtm" id="chooseRecBtm"><img src="Icons/Payment/cancel.svg" class="lftBtn" id="cclRec"
+                                                     width="15" height="15"/><img src="Icons/Payment/tick.svg"
+                                                                                  class="rtBtn" id="doneRec"
+                                                                                  width="20" height="15"/></td>
+          </tr>
+        </table>
+        <table id="confTbl">
+          <tr>
+            <td class="bxHd" id="chooseConfHd"><span>Transfer Complete</span></td>
+          </tr>
+          <tr>
+            <td class="bxMd" id="chooseConfMd">
+              <div id="confTxt"></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="bxBtm" id="chooseConfBtm"><img src="Icons/Payment/tick.svg" class="rtBtn" id="doneConf"
+                                                      width="20" height="15"/></td>
+          </tr>
+        </table>
+        <table id="failTransfer">
+          <tr>
+            <td class="bxHd" id="failHd"><span>Transfer Failed</span></td>
+          </tr>
+          <tr>
+            <td class="bxMd" id="failMd">
+              <div id="failTxt"></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="bxBtm" id="failBtm"><img src="Icons/tickRed.svg" class="rtBtn" id="doneFail" width="20"
+                                                height="15"/></td>
+          </tr>
+        </table>
+
+
+      </div>
+      &lt;!&ndash; /.box-body &ndash;&gt;
+      &lt;!&ndash; <div class="box-footer">
+         Footer
+       </div>
+       &lt;!&ndash; /.box-footer&ndash;&gt;
+    </div>-->
+    <!-- /.box -->
+  </section>
+
+  <!-- /.content -->
+</div>

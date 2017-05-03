@@ -1,0 +1,53 @@
+
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Select Vendor Details</h3>
+</div>
+<div class="modal-body" id="modal-body">
+
+  <!--<div class="row mar1" ng-repeat="user in loopThrough">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-3">{{user.user}}</div>
+    <div class="col-sm-7">{{user.text}}</div>
+  </div>-->
+  <table class="table table-striped" id="tblGrid">
+    <thead id="tblHead">
+    <tr>
+      <th>Vendor Name</th>
+      <th>Vendor Id</th>
+      <th>Vendor Agreement</th>
+      <th class="text-right">Select Agreement</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td>Vendor 1</td>
+      <td>3</td>
+      <td>Yes</td>
+      <td class="text-right"><div class="radio">
+        <label><input type="radio" name="optradio"></label>
+      </div></td>
+    </tr>
+    <tr><td>Vendor 2</td>
+      <td>5</td>
+      <td>Yes</td>
+      <td class="text-right"><div class="radio">
+        <label><input type="radio" name="optradio"></label>
+      </div></td>
+    </tr>
+    <tr><td>Vendor 3</td>
+      <td>10</td>
+      <td>Yes</td>
+      <td class="text-right"><div class="radio">
+        <label><input type="radio" name="optradio"></label>
+      </div></td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
+
+

@@ -1,0 +1,71 @@
+<div class="hold-transition login-page">
+
+	<!-- Error div style -->
+
+	<div class="error-div" ng-if="successfulLogin == false">
+		<div class="error-color float-left"></div>
+		<div ng-click="closeErrorDiv()"><i class="fa fa-times float-right pad-10 text-gray" aria-hidden="true"></i></div>
+		<div class="">
+			<h4>Error</h4>
+			<p class="">Invalid ID or password</p>
+		</div>
+	</div>
+
+	<!-- Error div style -->
+
+
+	<div class="login-box">
+		<div class="login-logo pad-top-btm-40">
+			<a href="index2.html"><img alt=""
+				src="assets/img/YBL-blockchain-logo.png" class="logo-size"></a>
+		</div>
+		<!-- /.login-logo -->
+		<div class="login-box-body">
+			<h3 class="login-box-msg blue-font">Sign in</h3>
+
+			<form class="LoginClass">
+				<div class="form-group has-feedback">
+					<input type="text" ng-model="user.username"
+						class="form-control input-box" placeholder="User Name">
+				</div>
+				<div class="form-group has-feedback">
+					<input type="password" ng-model="user.password"
+						class="form-control input-box" placeholder="Password">
+				</div>
+				<div class="form-group has-feedback">
+					<select class="form-control input-box border-radius-12"
+						ng-model="user.role">
+						<option value="ANCHOR">Anchor</option>
+						<option value="VENDOR">Vendor</option>
+						<option value="BANK">YBL Admin</option>
+						<option value="PAYMENT">Payment Maker</option>
+						<option value="SETTLEMENT">Payment Checker</option>
+					</select>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12">
+						<!--<div
+							class="checkbox icheck pad-left-50 margin-top-minus10 remember-me">
+							<input type="radio" name="group1" id="radio-1"> <label
+								for="radio-1"><span class="radio blue-font">Remember
+									me</span></label>
+						</div>-->
+					</div>
+
+					<div class="col-xs-4">
+						<button
+							class="height-50 font-20 btn-border-radius btn btn-primary btn-block btn-flat"
+							ng-click="signUser(user)">Submit</button>
+					</div>
+					<div class="col-xs-8 text-right">
+						<!--<a href="#" class="blue-font">Forgot Password</a><br> <a
+						href="register.html" class="text-right blue-font"><h4>Register</h4></a>-->
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</div>

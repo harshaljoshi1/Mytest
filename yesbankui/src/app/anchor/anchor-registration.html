@@ -1,0 +1,257 @@
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+
+		<ol class="breadcrumb">
+			<!--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>-->
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="register-box">
+			<div class="register-logo">
+				<a href="javascript:;"><b>Register a new Anchor membership</b></a>
+			</div>
+
+			<div class="register-box-body">
+
+
+				<form name="myForm" novalidate>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.CustomerName" placeholder="Name" name="name"
+									required> <span class="   form-control-feedback"></span>
+								<div ng-if="submitted || myForm.name.$dirty"
+									ng-messages="myForm.name.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Name must be entered</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="email" class="form-control"
+									ng-model="anchor.CustomerEmail" placeholder="Email"
+									name="email"
+									ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$/"
+									required> <span
+									class="   -envelope form-control-feedback"></span>
+								<div role="alert" style="color: red">
+									<span class="error" ng-show="myForm.email.$error.pattern">
+										Not a valid email!</span>
+								</div>
+								<div ng-if="submitted || myForm.email.$dirty"
+									ng-messages="myForm.email.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Email must be entered</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="number" class="form-control"
+									ng-model="anchor.CustomerMobileNo" maxlength="10"
+									minlength="10" placeholder="Mobile Number" name="phone"
+									required> <span class="   form-control-feedback"></span>
+								<div>
+									<span class="help-block"
+										ng-show="((myForm.phone.$error.minlength ||
+                      myForm.phone.$error.maxlength) &&
+                      myForm.phone.$dirty) "
+										style="color: red" a> phone number should be 10 digits
+									</span>
+								</div>
+								<div ng-if="submitted || myForm.phone.$dirty"
+									ng-messages="myForm.phone.$error" style="color: red"
+									role="alert">
+									<div ng-message="required">Phone Number must be entered</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.OperationsEmail"
+									placeholder="Operations Email" disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.RepaymentAccountNo"
+									placeholder="Repayment Account No " disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.RelationshipManagerEmail"
+									placeholder="Relationship Manager Email" disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.CustomersLimit" placeholder="Customers Limit"
+									disabled> <span class="   form-control-feedback"></span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.FeeIncomeAccountNo"
+									placeholder="Fee IncomeAccount No" disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.FeePercentage" placeholder="Fee Percentage"
+									disabled> <span class="   form-control-feedback"></span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.PenalInterest" placeholder="Penal Interest"
+									disabled> <span class="   form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.GraceInterest" placeholder="Fee GraceInterest"
+									disabled> <span class="   form-control-feedback"></span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.GraceInterestPeriod"
+									placeholder="Grace Interest Period" disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.InterestEarnedGL"
+									placeholder="Interest Earned GL" disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.LimitExpiryDate"
+									placeholder="Limit Expiry Date" disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.PoolAccountNo" placeholder="Pool Account No"
+									disabled> <span class="   form-control-feedback"></span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.VendorFinanceGL"
+									placeholder="Vendor Finance GL" disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.AccruedInterestPayableGL"
+									placeholder="Accrued Interest Payable GL" disabled> <span
+									class="   form-control-feedback"></span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.AccruedInterestReceivableGL"
+									placeholder="Accrued Interest Receivable GL" disabled>
+								<span class="   form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.Liquidation" placeholder="Liquidation"
+									disabled> <span class="   -lock form-control-feedback"></span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control"
+									ng-model="anchor.MaximumOverDuePercentage"
+									placeholder="Maximum Over Due Percentage" disabled> <span
+									class="form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-xs-6">
+							<div class="icheck">
+								<!--<label class="font-light">
+                 <div ng-click="openTermsAndConditionsPopup()"> <input type="checkbox">I agree to the terms</div>
+                </label>-->
+							</div>
+						</div>
+						<div class="col-xs-6 text-right"></div>
+					</div>
+					<div class="text-right">
+						<div class="col-md-12 margin-top-btm-20">
+							<div class="col-md-4"></div>
+							<div class="col-md-4">
+								<button class="btn-height-40 btn btn-primary btn-block btn-flat"
+									ng-click="registerAnchor(anchor)">Register</button>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
+					</div>
+				</form>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</section>
+</div>

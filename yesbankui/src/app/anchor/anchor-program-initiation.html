@@ -1,0 +1,613 @@
+<div id="spinner" class="spinner display_none">
+  <div id="showTextId" class="spinner_img" style = "font-weight: bold;font-size: 16px;">
+    <span id="text1"></span><br>
+    <span id="text2"></span><br>
+    <span id="text3"></span><br>
+    <span id="text4"></span><br>
+    <span id="text5"></span>
+    <br>
+    <button class="btn btn-primary btn-md" style = "margin-left: 100px;margin-top: 10px;" ng-click="openPopup()">OK</button>
+  </div>
+</div>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>Anchor Program Initiation</h1>
+    <ol class="breadcrumb">
+      <!--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>-->
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content" dw-loading="AnchorProgram">
+
+    <!-- Your Page Content Here -->
+    <div class="row">
+      <div class="graph-box bg-white" >
+    <!--   <div ng-repeat="item in chart track by $index" style="height: 120px"> -->
+<!--     <div ng-repeat="item in loopThroughAnchorProgramIds" ng-if="item.status == '0'">  -->
+    <div ng-repeat="item in loopThroughAnchorProgramIds" >
+          <nvd3 options="chartOptions[$index]" data="chart[$index]" ></nvd3>
+        </div>
+      </div>
+      <!-- ./col -->
+    </div>
+    <!-- Default box -->
+    <div class="col-sm-12" style="padding: 0 0 10px 0;margin-top: 25px;">
+   <!--   <button class="btn btn-primary btn-md" ng-click="createAnchorProgram()" ng-disabled="isDisabled" style="">Create Anchor
+        Program
+      </button> -->
+     <button class="btn btn-primary btn-md" ng-click="createAnchorProgram()" style="">Create Anchor
+        Program
+      </button>
+      <select ng-model="anchorProgramId" ng-options="o as o for o in options" ng-disabled="DisabledOption" class="height-38 pad-5">
+        <option value="" disabled selected style="display: none;">Select Anchor Program</option>
+      </select>
+      <b style="color: #253a82">{{anchorProgramId}}</b>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="box box-primary box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Anchors</h3>
+            <div class="box-tools" style="margin-right: 45px">
+              <div class="input-group input-group-sm" style="width: 250px;">
+                <input type="text" name="table_search" class="form-control pull-right" ng-model="search.CustomerName" placeholder="Search By Anchor Name">
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default blue-search-bg"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <div>
+              <div class="col-md-12 box box-default box_inside_table collapsed-box"
+                   style="margin: 0; border-top: 1px solid #d2d6de; border-radius: 0;"
+                   ng-repeat="anchor in loopThroughAnchors | filter:search">
+                <div class="box-header with-border"><h3 class="box-title pad-top-bottom-10" >{{anchor.CustomerName}} </h3>
+
+                  <div class="box-tools pull-right">
+<!--                    <button type="button" class="btn btn-primary" ng-click="getVendorDetails(anchor.AnchorRefNumber)">List Vendors
+                    </button>
+                    <button type="button" class="btn btn-box-tool margin-50-10" style="" data-widget="collapse"><i class="fa fa-plus"></i>
+                    </button>
+-->
+                    	<!-- radio button style -->
+
+								<div class="section float-right"  style="margin: 6px;">
+									<div class="container">
+										<input type="radio" ng-model='selectAnchor.optradio' name="selectedAnchor" ng-value="anchor.AnchorRefNumber" ng-change="getVendorDetails(anchor.AnchorRefNumber)" id="radio{{anchor.AnchorRefNumber}}"> <label
+											for="radio{{anchor.AnchorRefNumber}}"><span class="radio"></span></label>
+									</div>
+
+								</div>
+
+								<!-- radio button style -->
+
+
+                  </div>
+                </div>
+                <div class="box-body labelColor">
+                  <table class="table table-condensed">
+                    <tbody>
+                    <tr>
+
+                      <th>Label</th>
+                      <th>Value</th>
+
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">AnchorRefNumber</td>
+                      <td style="color: cornflowerblue">{{anchor.AnchorRefNumber}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">CustomerMobileNo</td>
+                      <td style="color: cornflowerblue">{{anchor.CustomerMobileNo}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">AccruedInterestPayableGL</td>
+                      <td style="color: cornflowerblue">{{anchor.AccruedInterestPayableGL}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">AccruedInterestReceivableGL</td>
+                      <td style="color: cornflowerblue">{{anchor.AccruedInterestReceivableGL}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">CustomerEmail</td>
+                      <td style="color: cornflowerblue">{{anchor.CustomerEmail}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">CustomersLimit</td>
+                      <td style="color: cornflowerblue">{{anchor.CustomersLimit}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">FeeIncomeAccountNo</td>
+                      <td style="color: cornflowerblue">{{anchor.FeeIncomeAccountNo}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">FeePercentage</td>
+                      <td style="color: cornflowerblue">{{anchor.FeePercentage}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">GraceInterest</td>
+                      <td style="color: cornflowerblue">{{anchor.GraceInterest}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">GraceInterestPeriod</td>
+                      <td style="color: cornflowerblue">{{anchor.GraceInterestPeriod}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">Interest</td>
+                      <td style="color: cornflowerblue">{{anchor.Interest}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">InterestEarnedGL</td>
+                      <td style="color: cornflowerblue">{{anchor.InterestEarnedGL}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">LimitExpiryDate</td>
+                      <td style="color: cornflowerblue">{{anchor.LimitExpiryDate}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">Liquidation</td>
+                      <td style="color: cornflowerblue">{{anchor.Liquidation}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">MaximumOverDuePercentage</td>
+                      <td style="color: cornflowerblue">{{anchor.MaximumOverDuePercentage}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">OperationsEmail</td>
+                      <td style="color: cornflowerblue">{{anchor.OperationsEmail}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">PenalInterest</td>
+                      <td style="color: cornflowerblue">{{anchor.PenalInterest}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">PoolAccountNo</td>
+                      <td style="color: cornflowerblue">{{anchor.PoolAccountNo}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">RelationshipManagerEmail</td>
+                      <td style="color: cornflowerblue">{{anchor.RelationshipManagerEmail}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">RepaymentAccountNo</td>
+                      <td style="color: cornflowerblue">{{anchor.RepaymentAccountNo}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">VendorFinanceGL</td>
+                      <td style="color: cornflowerblue">{{anchor.VendorFinanceGL}}</td>
+                    </tr>
+
+                    <!--<tr>
+                      <td style="color: forestgreen">CustomerId</td>
+                      <td style="color: cornflowerblue">{{anchor.CustomerId}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">ApplicationId</td>
+                      <td style="color: cornflowerblue">{{anchor.ApplicationId}}</td>
+                    </tr>-->
+                    </tbody>
+                  </table>
+                  <!--<label>CustomerId :</label> <span>{{anchor.CustomerId}}</span><br><label>ApplicationId : </label>
+                  <span>{{anchor.ApplicationId}}</span><br><label>CustomerMobileNo :</label> <span>{{anchor.CustomerMobileNo}}</span>
+                  <br><label>AccruedInterestPayableGL :</label>
+                  <span>{{anchor.AccruedInterestPayableGL}}</span><br><label>AccruedInterestReceivableGL :</label>
+                  <span>{{anchor.AccruedInterestReceivableGL}}</span>
+                  <br><label>CustomerEmail :</label> <span>{{anchor.CustomerEmail}}</span><br><label>CollectionMethod
+                  :</label><span>{{anchor.CollectionMethod}}</span><br><label>CustomersLimit :</label> <span>{{anchor.CustomersLimit}}</span>
+                  <br><label>FeeIncomeAccountNo :</label> <span>{{anchor.FeeIncomeAccountNo}}</span><br><label>FeePercentage
+                  :</label> <span>{{anchor.FeePercentage}}</span><br><label>GraceInterest :</label> <span>{{anchor.GraceInterest}}</span>
+                  <br><label>GraceInterestPeriod :</label> <span>{{anchor.GraceInterestPeriod}}</span><br><label>Interest
+                  :</label> <span>{{anchor.Interest}}</span><br><label>InterestEarnedGL :</label> <span>{{anchor.InterestEarnedGL}}</span>
+                  <br><label>LimitExpiryDate :</label> <span>{{anchor.LimitExpiryDate}}</span><br><label>Liquidation
+                  :</label> <span>{{anchor.Liquidation}}</span><br><label>MaximumOverDuePercentage :</label> <span>{{anchor.MaximumOverDuePercentage}}</span>
+                  <br><label>OperationsEmail :</label> <span>{{anchor.OperationsEmail}}</span><br><label>PenalInterest
+                  :</label> <span>{{anchor.PenalInterest}}</span><br><label>PoolAccountNo :</label> <span>{{anchor.PoolAccountNo}}</span>
+                  <br><label>RelationshipManagerEmail :</label>
+                  <span>{{anchor.RelationshipManagerEmail}}</span><br><label>RepaymentAccountNo :</label> <span>{{anchor.RepaymentAccountNo}}</span><br><label>VendorFinanceGL
+                  :</label> <span>{{anchor.VendorFinanceGL}}</span><br><label>AnchorRefNumber :</label> <span>{{anchor.AnchorRefNumber}}</span>
+-->
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!--<div class="box-footer">
+            <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#cancelModal">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>-->
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="box box-primary box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Vendors</h3>
+            <div class="box-tools" style="margin-right: 45px">
+              <div class="input-group input-group-sm" style="width: 250px;">
+                <input type="text" name="table_search" class="form-control pull-right" ng-model="searchVendor.VendorFirstName" placeholder="Search By Vendor Name">
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default blue-search-bg"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="box-body no-padding">
+            <div>
+              <div class="box box-default box_inside_table collapsed-box"
+                   style="margin: 0; border-top: 1px solid #d2d6de; border-radius: 0;"
+                   ng-repeat="vendor in loopThroughVendors |filter:searchVendor">
+                <div class="box-header with-border"><h3 class="box-title" style="padding: 15px 0px;">{{vendor.VendorFirstName}} </h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool pad-8 margin-50-10" data-widget="collapse"><i class="fa fa-plus"></i>
+                    </button>
+
+                    	<!-- radio button style -->
+
+								<div class="section float-right"  style="margin: 6px;">
+									<div class="container">
+										<input type="radio" ng-model='selectVendor.optradio' name="selectedVendor" ng-value="vendor.VendorRefNumber" id="radio-2">
+												<label for="radio-2"><span class="radio"></span></label>
+											</div>
+
+								</div>
+
+								<!-- radio button style -->
+
+                  </div>
+                </div>
+                <div class="box-body labelColor">
+
+                  <!--<label>SupplierCode :</label> <span>{{vendor.SupplierCode}}</span><br><label>ExistingCustomer
+                  :</label> <span>{{vendor.ExistingCustomer}}</span><br><label>CorporateCustomerId: </label><span> {{vendor.CorporateCustomerId}}</span>
+                  <br><label>SupplierODAccount :</label><span>{{vendor.SupplierODAccount}}</span><br><label>SupplierCurrentAccount
+                  :</label> <span>{{vendor.SupplierCurrentAccount}}</span><br><label>IFSCCode :</label> <span>{{vendor.IFSCCode}}</span>
+                  <br><label>SupplierLimit :</label><span>{{vendor.SupplierLimit}}</span><br><label>LimitExpiryDate
+                  :</label> <span>{{vendor.LimitExpiryDate}}</span><br><label>SupplierAccount :</label> <span>{{vendor.SupplierAccount}}</span>
+                  <br><label>CreationDate :</label><span>{{vendor.CreationDate}}</span><br><label>UpdationDate :</label>
+                  <span>{{vendor.UpdationDate}}</span><br><label>VendorRefNumber :</label> <span>{{vendor.VendorRefNumber}}</span>-->
+                  <table class="table table-condensed">
+                    <tbody>
+                    <tr>
+
+                      <th>Label</th>
+                      <th>Value</th>
+
+                    </tr>
+
+                    <!--<tr>
+                      <td style="color: forestgreen">VendorEmail</td>
+                      <td style="color: cornflowerblue;">{{vendor.VendorEmail}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">VendorPhone</td>
+                      <td style="color: cornflowerblue;">{{vendor.VendorPhone}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">VendorPAN</td>
+                      <td style="color: cornflowerblue;">{{vendor.VendorPAN}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">VendorBankName</td>
+                      <td style="color: cornflowerblue;">{{vendor.VendorBankName}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">VendorBankAddress</td>
+                      <td style="color: cornflowerblue;">{{vendor.VendorBankAddress}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">VendorAddress</td>
+                      <td style="color: cornflowerblue;">{{vendor.VendorAddress}}</td>
+                    </tr>-->
+                    <tr>
+                      <td style="color: forestgreen">SupplierCurrentAccount</td>
+                      <td style="color: cornflowerblue;">{{vendor.SupplierCurrentAccount}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">SupplierODAccount</td>
+                      <td style="color: cornflowerblue;">{{vendor.SupplierODAccount}}</td>
+                    </tr>
+                    <!--<tr>
+                      <td style="color: forestgreen">IFSCCode</td>
+                      <td style="color: cornflowerblue;">{{vendor.IFSCCode}}</td>
+                    </tr>-->
+                    <tr>
+                      <td style="color: forestgreen">SupplierLimit</td>
+                      <td style="color: cornflowerblue;">{{vendor.SupplierLimit}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">LimitExpiryDate</td>
+                      <td style="color: cornflowerblue;">{{vendor.LimitExpiryDate}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">SupplierAccount</td>
+                      <td style="color: cornflowerblue;">{{vendor.SupplierAccount}}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: forestgreen">VendorRefNumber</td>
+                      <td style="color: cornflowerblue;">{{vendor.VendorRefNumber}}</td>
+                    </tr>
+
+
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!--<div class="box-body no-padding">
+            <div id="render_sample_vendors">
+              <div class="box box-default collapsed-box box_inside_table" style="margin: 0; border-top: 1px solid #d2d6de; border-radius: 0;" ng-repeat="vendor in loopThrough" >
+                <div class="box-header with-border"><h3 class="box-title">{{vendor.CustomerId}}</h3>
+                <div class="box-tools pull-right"><button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                  <input type="radio" name="selectedVendor"ng-model='selectVendor.optradio' ng-value='vendor.CustomerId'style="margin-left: 10px;">
+                </div>
+              </div>
+                <div class="box-body"></div></div>
+
+            </div>
+          </div>-->
+          <!--<div class="box-footer">
+            <div class="col-sm-12">
+              <div class="col-sm-6">
+                <input type="file"/>
+              </div>
+              <div class="col-sm-6">
+                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Upload</button>
+              </div>
+            </div>
+          </div>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12" style="padding: 0;">
+        <div class="col-sm-6">
+          <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#cancelModal">Cancel</button>
+        </div>
+        <div class="col-sm-6 text-right">
+          <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#anchorIdModal"
+                  ng-click="updateAnchorProgram(anchorProgramId)">Update Anchor
+            Program
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="box">
+      <div class="box-header with-border">
+
+
+        <div class="box-tools pull-right">
+          &lt;!&ndash;<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+            <i class="fa fa-minus"></i></button>
+          &lt;!&ndash; <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"> &ndash;&gt;
+          &lt;!&ndash; <i class="fa fa-times"></i></button> &ndash;&gt;
+        </div>
+      </div>
+      <div class="box-body">
+
+        <table id="mainTbl">
+          <tbody>
+          <tr>
+            <td class="smlBrk" style="height: 10px;"><br/></td>
+            <td id="txtBxRw"></td>
+            <td class="smlBrk"><br/></td>
+            <td id="userStuff">
+              <div class="rtTxt" id="user"><span id="userDets"><span id="username"></span>
+      (<span id="userType">Anchor</span>: <span id="company"></span>)</span>�<span
+                onclick="toggleMenu()" id="menuBtn">
+      <div class="menuBar"></div>
+      <div class="menuBar"></div>
+      <span class="menuWhiteBlock" id="userBlock"></span></span></div>
+            </td>
+            <td class="smlBrk"><br/></td>
+          </tr>
+          <tr>
+            <td class="smlBrk"><br/></td>
+            <td colspan="3" class="dropTd">
+              <div id="mainMenu" class="usersDropMargin">
+                <div class="dropDowns" id="users"><span class="userHdr">Switch User...</span></div>
+              </div>
+              <br/></td>
+            <td class="smlBrk"><br/></td>
+          </tr>
+          <tr>
+            <td class="smlBrk"><br/></td>
+            <td id="lftBxHd" class="bxHd">Invoice for Anchor <img width="17" height="20" class="rtBtn noPoint"
+                                                                  src="Icons/asset.svg"/></td>
+            <td class="smlBrk"><br/></td>
+            <td id="rtBxHd" class="bxHd">Accepted Anchor Invoice <img width="15" height="20" class="rtBtn noPoint"
+                                                                      src="Icons/person.svg"/></td>
+            <td class="smlBrk"><br/></td>
+          </tr>
+          <tr id="mdHldr">
+            <td class="smlBrk"><br/></td>
+            <td id="lftBxMd" class="bxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input type="hidden" value="1" class="mult"/></div>
+              </div>
+          <span class="contentHldr">
+            <div class="content">
+              <table id="selanchoridTbl">
+              </table>
+            </div>
+          </span> <br/>
+            </td>
+            <td class="smlBrk"><br/></td>
+            <td id="rtBxMd" class="bxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input type="hidden" value="1" class="mult"/></div>
+              </div>
+            <span class="contentHldr">
+             <embed src="/data/Sample1.pdf" width="600px" height="400px"/>					      							<div
+              class="content" id="recipientInfo"></div>
+            </span><br/>
+            </td>
+            <td class="smlBrk"><br/>
+            </td>
+          </tr>
+          <tr>
+            <td class="smlBrk"><br/>
+            </td>
+            <td id="lftBxBtm" class="bxBtm"><img width="15" height="15" id="addToAnchorid"
+                                                 class="lftBtn" src="Icons/Anchor/add.svg"/>
+            <td class="smlBrk"><br/>
+            </td>
+            <td id="rtBxBtm" class="bxBtm"><img width="12" height="15" id="remFrmAnchorid"
+                                                class="rtBtn" src="Icons/Anchor/minus.svg"/>
+
+              <form ref='uploadForm' id='uploadForm'
+                    action='/uploaded/files/'
+                    method='post'
+                    encType="multipart/form-data"><input type="file" name=file/>
+                <input type='submit' value='Upload!'/>
+              </form>
+            </td>
+            </td>
+            <td class="smlBrk"><br/>
+            </td>
+          </tr>
+          <tr>
+            <td class="smlBrk"><br/>
+            </td>
+            <td><span id="cclPg" class="lftBtn mnBtn">Cancel</span></td>
+            <td class="smlBrk"><br/>
+            </td>
+            <td><span id="subPg" class="rtBtn mnBtn">Transfer Anchor Document </span></td>
+            <td class="smlBrk"><br/>
+            </td>
+          </tr>
+          <tr>
+            <td class="smlBrk gapRw"><br/>
+            </td>
+            <td class="gapRw"><br/>
+            </td>
+            <td class="smlBrk gapRw"><br/>
+            </td>
+            <td class="gapRw"><br/>
+            </td>
+            <td class="smlBrk gapRw"><br/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="chooseOptTbl">
+          <tbody>
+          <tr>
+            <td id="chooseOptHd" class="bxHd"><span>Anchor Details</span><img width="15"
+                                                                              height="15" id="clsOpt" class="rtBtn"
+                                                                              src="Icons/close.svg"/></td>
+          </tr>
+          <tr>
+            <td id="chooseOptMd" class="bxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input type="hidden" value="1" class="mult"/></div>
+              </div>
+            <span class="contentHldr">
+              <div class="content">
+                <table id="vhclsTbl">
+                </table>
+              </div>
+            </span></td>
+          </tr>
+          <tr>
+            <td id="chooseOptBtm" class="bxBtm"><img width="15" height="15" id="cclOpt"
+                                                     class="lftBtn" src="Icons/Manufacturer/cancel.svg"/><img
+              width="20"
+              height="15" id="doneOpt" class="rtBtn" src="Icons/Manufacturer/tick.svg"/></td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="chooseRecTbl">
+          <tbody>
+          <tr>
+            <td id="chooseRecHd" class="bxHd"><span>Anchor</span><img width="15" height="15"
+                                                                      id="clsRec" class="rtBtn"
+                                                                      src="Icons/close.svg"/></td>
+          </tr>
+          <tr>
+            <td id="chooseRecMd" class="bxMd">
+              <div class="scrlHldr">
+                <div class="scrlBr"><input type="hidden" value="1" class="mult"/></div>
+              </div>
+            <span class="contentHldr">
+              <div class="content">
+                <table id="recsTbl">
+                </table>
+              </div>
+            </span></td>
+          </tr>
+          <tr>
+            <td id="chooseRecBtm" class="bxBtm"><img width="15" height="15" id="cclRec"
+                                                     class="lftBtn" src="Icons/Anchor/cancel.svg"/><img width="20"
+                                                                                                        height="15"
+                                                                                                        id="doneRec"
+                                                                                                        class="rtBtn"
+                                                                                                        src="Icons/Anchor/tick.svg"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="confTbl">
+          <tbody>
+          <tr>
+            <td id="chooseConfHd" class="bxHd"><span>Transfer Complete</span></td>
+          </tr>
+          <tr>
+            <td id="chooseConfMd" class="bxMd">
+              <div id="confTxt"></div>
+            </td>
+          </tr>
+          <tr>
+            <td id="chooseConfBtm" class="bxBtm"><img width="20" height="15" id="doneConf"
+                                                      class="rtBtn" src="Icons/Anchor/tick.svg"/></td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="failTransfer">
+          <tbody>
+          <tr>
+            <td id="failHd" class="bxHd"><span>Transfer Failed</span></td>
+          </tr>
+          <tr>
+            <td id="failMd" class="bxMd">
+              <div id="failTxt"></div>
+            </td>
+          </tr>
+          <tr>
+            <td id="failBtm" class="bxBtm"><img width="20" height="15" id="doneFail"
+                                                class="rtBtn" src="Icons/tickRed.svg"/></td>
+          </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="box-footer">
+         Footer
+       </div>
+    </div>-->
+    <!-- /.box -->
+  </section>
+  <!-- /.content -->
+</div>

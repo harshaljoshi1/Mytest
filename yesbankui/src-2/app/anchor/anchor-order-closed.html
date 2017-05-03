@@ -1,0 +1,185 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>Anchor Order Closed</h1>
+    <ol class="breadcrumb">
+      <!--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>-->
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Your Page Content Here -->
+    <div class="row">
+      <div class="graph-box bg-white">
+        <div ng-repeat="item in loopThroughAnchorProgramIds" ng-if="item.invoices[0].moStatus >= '2'">
+     <!-- <div ng-repeat="item in chart track by $index" ng-if="$index == 5"  style="height: 120px"> -->
+          <nvd3 options="chartOptions[$index]" data="chart[$index]"></nvd3>
+        </div>
+      </div>
+    </div>
+    <!-- Default box -->
+
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Anchor Orders</h3>
+
+        <div class="box-tools">
+          <ul class="nav nav-tabs" style="border: none;">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding: 5px 15px;">
+                Sort By <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Time</a></li>
+              </ul>
+            </li>
+            <li class="pull-right">
+              <div class="input-group input-group-sm" style="width: 250px;">
+                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search by Anchor Program Id" ng-model="search.anchorprogramID">
+
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body no-padding">
+        <table class="table">
+          <tr>
+            <th>Anchor Program Id</th>
+            <th>Customer Name</th>
+            <th>Vendor Name</th>
+            <th>Vendor Payments</th>
+            <th>Received payments</th>
+            <th>Status</th>
+          </tr>
+
+          <tr ng-repeat="item in loopThroughAnchorProgramIds | filter:search " ng-if="item.invoices[0].moStatus >= '2'">
+            <td>{{item.anchorprogramID}}</td>
+            <td>{{item.anchorname}}</td>
+            <td>{{item.vendorfname}}</td>
+            <td>{{item.invoices[0].approvedinvoiceAmount}}</td>
+            <td>{{item.invoices[0].moReceivableAmount}}</td>
+             <td>
+                  <span ng-show="item.invoices[0].moStatus == 0 ">Vendor Acknowledges Purchase Order</span>
+                  <span ng-show="item.invoices[0].moStatus == 1">Vendor Creates Invoice Template</span>
+                  <span ng-show="item.invoices[0].moStatus == 2">Vendor Updates Invoice Details</span>
+                  <span ng-show="item.invoices[0].moStatus == 3">Vendor Transfers Invoice To Anchor</span>
+                  <span ng-show="item.invoices[0].moStatus == 4">Anchor Approves Invoice</span>
+                  <span ng-show="item.invoices[0].moStatus == 5">Anchor Authorizes Invoice Payment</span>
+                  <span ng-show="item.invoices[0].moStatus == 6">Vendor Requests Bank For Invoice Payment </span>
+                  <span ng-show="item.invoices[0].moStatus == 7">Bank Initiates Invoice Payment</span>
+                  <span ng-show="item.invoices[0].moStatus == 8">Maker Enters Invoice Payment Details</span>
+                  <span ng-show="item.invoices[0].moStatus == 9">Checker Approves Invoice Payment</span>
+                  <span ng-show="item.invoices[0].moStatus == 10">Vendor Receives Payment</span>
+                  <span ng-show="item.invoices[0].moStatus == 11">nvoice Payment Settled</span></td>
+              </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!--<table id="mainTbl" class="noFix">
+      <tr>
+        <td class="smlBrk bgColorChng brkRw"></td>
+        <td class="brkRw bgColorChng" colspan="5"></td>
+        <td class="smlBrk brkRw bgColorChng"></td>
+      </tr>
+      <tr>
+        <td class="smlBrk"></td>
+        <td colspan="5" class="homeBtn">
+          <div id="user" class="rtTxt"><span id="userDets" class="txtColorChng"><span id="username"></span> (<span
+            id="userType">Regulator</span>: <span id="company"></span>)</span>&nbsp;<span id="menuBtn"
+                                                                                          class="bdrColorChng"
+                                                                                          onclick="toggleMenu()"><div
+            class="menuBar bgColorChng"></div><div class="menuBar bgColorChng"></div><span id="userBlock"
+                                                                                           class="menuWhiteBlock"></span></span>
+          </div>
+        </td>
+        <td class="smlBrk"></td>
+      </tr>
+      <tr>
+        <td class="smlBrk"></td>
+        <td colspan="5">
+          <div class="usersDropMargin" id="mainMenu">
+            <div id="users" class="dropDowns txtColorChng bdrColorChng">
+              <span class="userHdr">View As...</span>
+            </div>
+          </div>
+          <div class="usersDropMargin" id="endUsers">
+            <div id="theirUsers" class="dropDowns txtColorChng bdrColorChng">
+            </div>
+          </div>
+        </td>
+        <td class="smlBrk"></td>
+      </tr>
+      <tr>
+        <td class="smlBrk"></td>
+        <td colspan="5" id="filterRw">
+          <div id="findV5CID" class="bdrColorChng"><input id="searchBar" class="txtColorChng" type="text"
+                                                          onkeyup="runSearch()" onclick="clearSearch()"
+                                                          value="Search by Anchor Program No.."/></div>
+          <div id="filtTxt" class="dropTop txtColorChng bdrColorChng" onclick="toggleFilters()">Filters &or;<span
+            id="filtBlock" class="whiteBlock"></span></div>
+          <div id="sortTxt" class="dropTop txtColorChng bdrColorChng" onclick="toggleSorts()">Sort &or;<span
+            id="sortBlock" class="whiteBlock"></span></div>
+        </td>
+        <td class="smlBrk"></td>
+      </tr>
+      <tr>
+        <td class="smlBrk"></td>
+        <td colspan="4"></td>
+        <td>
+          <div class="dropTopMargins">
+            <div id="filters" class="dropDowns txtColorChng">
+              <span class="filterHldr">Create <span class="filterBox"
+                                                    onclick="hideType(this, 'Create')"></span></span>
+              <span class="filterHldr">Transfer <span class="filterBox"
+                                                      onclick="hideType(this, 'Transfer')"></span></span>
+              <span class="filterHldr">Update <span class="filterBox"
+                                                    onclick="hideType(this, 'Update')"></span></span>
+              <span class="filterHldr">Scrap <span class="filterBox"
+                                                   onclick="hideType(this, 'Scrap')"></span></span>
+            </div>
+          </div>
+          <div class="dropTopMargins">
+            <div id="sorts" class="dropDowns txtColorChng">
+              <span class="sortHldr" onclick="sortTime('asc',false)">Time: newest &rarr; oldest</span>
+              <span class="sortHldr" onclick="sortTime('desc',false)">Time: oldest &rarr; newest</span>
+              <span class="sortHldr" onclick="sortV5CID('desc')">Anchor ID: A &rarr; Z</span>
+              <span class="sortHldr" onclick="sortV5CID('asc')">Anchor ID: Z &rarr; A</span>
+            </div>
+          </div>
+        </td>
+        <td class="smlBrk"></td>
+      </tr>
+      <tr id='insAft'>
+        <td class="smlBrk"></td>
+        <td colspan="5" id="space" style="text-align: center"><img class="loader" src="Images/loading.gif"
+                                                                   height="50" width="50" alt="loading"
+                                                                   text="please wait..."/><br/><br/></td>
+        <td class="smlBrk"></td>
+      </tr>
+      <tr>
+        <td class="smlBrk gapRw"></td>
+        <td class="gapRw"></td>
+        <td class="smlBrk gapRw"></td>
+        <td class="gapRw"></td>
+        <td class="smlBrk gapRw"></td>
+      </tr>
+    </table>-->
+
+  </section>
+  <div class="spinner1" ng-show="loading">
+    <img src="http://i49.tinypic.com/j5z8mb.gif" alt="Loading..." />
+  </div>
+  <!-- /.content -->
+</div>
